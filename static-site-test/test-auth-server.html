@@ -49,8 +49,6 @@
       const getAuthURL =
         "https://q48v141xl5.execute-api.us-east-1.amazonaws.com/dev/api/get-auth-url";
 
-    try {
-
       getURLElement.onclick = function () {
         fetch(getAuthURL)
           .then(function (response) {
@@ -65,10 +63,6 @@
             resultLink.href = authUrl;
           });
       };
-
-    } catch (err) {
-        console.error(err);
-    }
       // --------------------- END OF STEP 1
 
       // --------------------- STEP 2
@@ -77,8 +71,6 @@
       const accessTokenElement = document.getElementById("accessToken");
       const getToken =
         "https://q48v141xl5.execute-api.us-east-1.amazonaws.com/dev/api/token";
-
-    try {
 
       getAccessToken.onclick = function () {
         let code = codeValue.value;
@@ -96,10 +88,6 @@
             accessTokenElement.innerText = JSON.stringify(json);
           });
       };
-
-    } catch {
-        console.error(err);
-    }
       // --------------------- END OF STEP 2
 
     </script>
