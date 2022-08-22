@@ -71,5 +71,13 @@ describe('<App /> integration', () => {
         AppWrapper.unmount();
       });
 
+      test('change events input changes display', () => {
+        const AppWrapper = mount(<App />);
+        const eventObject = { target: { value: 4 } };
+        AppWrapper.find('.number').simulate('change', eventObject);
+        expect(AppWrapper.find('.number').prop('value')).toBe(4);
+        AppWrapper.unmount();
+      });
+
     });
 
