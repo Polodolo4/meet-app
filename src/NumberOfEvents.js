@@ -10,7 +10,7 @@ class NumberOfEvents extends Component {
     constructor() {
         super();
         this.state = {
-            numberDefault: 32
+            numberDefault: 4
         }
     }
 
@@ -19,6 +19,7 @@ class NumberOfEvents extends Component {
 
         return (
             <div className='number-of-events'>
+                Event Count Limit:
                 <input className='number' value={numberDefault} onChange={this.handleInputChanged}></input>
             </div>
         );

@@ -20,8 +20,8 @@ class Event extends Component {
         return (
             <div>
                 <h2 className='eventName'>{event.summary}</h2>
-                <div className='dateTime'></div>
-                <div className='location'></div>
+                <div className='dateTime'>WHEN: From {event.start.dateTime} to {event.end.dateTime}</div>
+                <div className='location'>WHERE: {event.location}</div>
                 {!collapsed && <div className='event-description'>{event.description}</div>}
                 {this.state.collapsed ? (
                     <button 
