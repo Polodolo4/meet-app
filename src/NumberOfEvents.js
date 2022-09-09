@@ -19,7 +19,7 @@ class NumberOfEvents extends Component {
 
         return (
             <div className='number-of-events'>
-                Event Count Limit:
+                <h2>Event Count Limit:</h2>
                 <input type='number' className='count-number' value={this.state.numberDefault} onChange={this.handleInputChanged}></input>
             </div>
         );

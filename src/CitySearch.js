@@ -31,6 +31,7 @@ class CitySearch extends Component {
     
     return (
       <div className="CitySearch">
+        <h2>Search by city!</h2>
         <input
           type="text"
           className="city"
