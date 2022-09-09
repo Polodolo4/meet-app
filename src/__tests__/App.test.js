@@ -67,17 +67,35 @@ describe('<App /> integration', () => {
         const suggestionItems = AppWrapper.find(CitySearch).find('.suggestions li');
         await suggestionItems.at(suggestionItems.length - 1).simulate('click');
         const allEvents = await getEvents();
-        expect(AppWrapper.state('events')).toEqual(allEvents);
+        const allSlice = allEvents.slice(0, 32);
+        expect(AppWrapper.state('events')).toEqual(allSlice);
         AppWrapper.unmount();
       });
 
-      test('change events input changes display', () => {
+      test('App passes "events" state as a prop to NumberOfEvents', () => {
         const AppWrapper = mount(<App />);
-        const eventObject = { target: { value: 4 } };
-        AppWrapper.find('.number').simulate('change', eventObject);
-        expect(AppWrapper.find('.number').prop('value')).toBe(4);
+        const AppEventsState = AppWrapper.state('events');
+        expect(AppEventsState).not.toEqual(undefined);
+        expect(AppWrapper.find(EventList).props().events).toEqual(AppEventsState);
         AppWrapper.unmount();
-      });
-
     });
 
+      test('App passes "numberOfEvents" state as a prop to NumberOfEvents', () => {
+        const AppWrapper = mount(<App />);
+        const AppNumberState = AppWrapper.state('numberOfEvents');
+        expect(AppNumberState).not.toEqual(undefined);
+        expect(AppWrapper.find(NumberOfEvents).props().numberOfEvents).toEqual(AppNumberState);
+        AppWrapper.unmount();
+    });
+
+    test('number of events rendered matches number in count limit box', async () => {
+      const AppWrapper = mount(<App />);
+      const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
+      const number = Math.floor(Math.random() * (32));
+      const eventObject = { target: { value: number } };
+      await NumberOfEventsWrapper.find('.count-number').simulate('change', eventObject);
+      expect(AppWrapper.state('numberOfEvents')).toEqual(number);
+      AppWrapper.unmount();
+  });
+
+    });
