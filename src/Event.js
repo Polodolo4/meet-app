@@ -33,7 +33,7 @@ class Event extends Component {
                     </button>
                 ) : (
                     <button
-                    className='details-button'
+                    className='hide-details-button'
                     onClick={this.changeCollapseBoolean}
                     >
                     Hide Details

@@ -97,6 +97,16 @@ input[type="number"] {
   cursor: pointer;
 }
 
+.hide-details-button {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  padding: 5px 8px;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+}
+
 .name {
   font-size: 18px;
   font-weight: 600;
