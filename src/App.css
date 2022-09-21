@@ -210,6 +210,18 @@ input[type="number"] {
   font-family: "Roboto";
 }
 
+h1 {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+h3 {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
 
 
 @media only screen and (min-width: 992px) {
