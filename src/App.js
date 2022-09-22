@@ -7,6 +7,7 @@ import NumberOfEvents from './NumberOfEvents';
 import { extractLocations, getEvents } from './api';
 import { OfflineAlert } from './Alert';
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import EventGenre from './EventGenre';
 
 class App extends Component {
   state = {
@@ -74,11 +75,15 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <h1>Meet App!</h1>
         <h1><OfflineAlert text={this.state.infoText} /></h1>
         <NumberOfEvents numberOfEvents={this.state.numberOfEvents} updateEvents={this.updateEvents} />
+        <h4>Look for events near you!</h4>
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
         <h4>Events in each city!!</h4>
 
+    <div className='data-vis-wrapper'>
+      <EventGenre events={this.state.events} />
       <ResponsiveContainer height={400}>
         <ScatterChart
           margin={{
@@ -92,6 +97,7 @@ class App extends Component {
           <Scatter data={this.getData()} fill="#8884d8" />
         </ScatterChart>        
         </ResponsiveContainer>
+    </div>
         <EventList events={this.state.events} />
       </div>
     );
