@@ -6,7 +6,7 @@ import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import { extractLocations, getEvents } from './api';
 import { OfflineAlert } from './Alert';
-import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Label, Tooltip, ResponsiveContainer } from 'recharts';
 import EventGenre from './EventGenre';
 
 class App extends Component {
@@ -75,12 +75,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Meet App!</h1>
         <h1><OfflineAlert text={this.state.infoText} /></h1>
-        <NumberOfEvents numberOfEvents={this.state.numberOfEvents} updateEvents={this.updateEvents} />
-        <h4>Look for events near you!</h4>
+        <NumberOfEvents numberOfEvents={this.state.numberOfEvents} updateEvents={this.updateEvents} /> 
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
-        <h4>Events in each city!!</h4>
 
     <div className='data-vis-wrapper'>
       <EventGenre events={this.state.events} />
@@ -91,8 +88,12 @@ class App extends Component {
           }}
         >
           <CartesianGrid />
-          <XAxis type="category" dataKey="city" name="city" />
-          <YAxis allowDecimals={false} type="number" dataKey="number" name="number of events" />
+          <XAxis type="category" dataKey="city" name="city">
+            <Label value="Cities" offset={0} position="bottom" />
+          </XAxis>
+          <YAxis allowDecimals={false} type="number" dataKey="number" name="number of events">
+            <Label value="Number of Events" angle={-90} position="left" />
+          </YAxis>
           <Tooltip cursor={{ strokeDasharray: '3 3' }} />
           <Scatter data={this.getData()} fill="#8884d8" />
         </ScatterChart>        

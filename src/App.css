@@ -222,7 +222,10 @@ h3 {
   flex-direction: column;
 }
 
-
+.data-vis-wrapper {
+  margin-top: 100px;
+  margin-bottom: 50px;
+}
 
 @media only screen and (min-width: 992px) {
   .data-vis-wrapper {
