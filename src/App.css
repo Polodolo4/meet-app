@@ -38,7 +38,17 @@ input[type="number"] {
 }
 
 .city {
+  text-align: center;
   width: 250px;
+}
+
+.city-search {
+  white-space: nowrap;
+  margin-bottom: 20px;
+}
+
+.count-number {
+  text-align: center;
 }
 
 .CitySearch {
