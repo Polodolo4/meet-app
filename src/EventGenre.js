@@ -9,7 +9,7 @@ const EventGenre = ({ events }) => {
       setData(() => getData());
     }, [events]);
   
-    const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#884396' ];
+    const COLORS = ['#0088FE', '#00C49F', '#181519', '#FF8042', '#884396' ];
 
 const getData = () => {
         const genres = ['React', 'JavaScript', 'Node', 'jQuery', 'AngularJS'];
