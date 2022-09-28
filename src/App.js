@@ -5,6 +5,9 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import { extractLocations, getEvents } from './api';
+import { OfflineAlert } from './Alert';
+import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Label, Tooltip, ResponsiveContainer } from 'recharts';
+import EventGenre from './EventGenre';
 
 class App extends Component {
   state = {
@@ -44,7 +47,26 @@ class App extends Component {
         this.setState({ events: events.slice(0, sliceCount), locations: extractLocations(events) });
       }
     });
+    
+    if (!navigator.onLine) {
+      this.setState({
+        infoText: 'No Internet Connection!! Events may not be up to date... :(',
+      });
+    } else {
+      this.setState({ infoText: '' });
+    }
   }
+
+  getData = () => {
+    const { locations, events } = this.state;
+    const data = locations.map((location) => {
+      const number = events.filter((event) => event.location === location).length
+      const city = location.split(', ').shift()
+      return {city, number};
+    })
+    return data;
+  };
+  
 
   componentWillUnmount(){
     this.mounted = false;
@@ -53,10 +75,31 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <NumberOfEvents numberOfEvents={this.state.numberOfEvents} updateEvents={this.updateEvents} />
+        <h1><OfflineAlert text={this.state.infoText} /></h1>
+        <NumberOfEvents numberOfEvents={this.state.numberOfEvents} updateEvents={this.updateEvents} /> 
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
-        <EventList events={this.state.events} />
 
+    <div className='data-vis-wrapper'>
+      <EventGenre events={this.state.events} />
+      <ResponsiveContainer height={400}>
+        <ScatterChart
+          margin={{
+            top: 20, right: 20, bottom: 20, left: 20,
+          }}
+        >
+          <CartesianGrid />
+          <XAxis type="category" dataKey="city" name="city">
+            <Label value="Cities" offset={0} position="bottom" />
+          </XAxis>
+          <YAxis allowDecimals={false} type="number" dataKey="number" name="number of events">
+            <Label value="Number of Events" angle={-90} position="left" />
+          </YAxis>
+          <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+          <Scatter data={this.getData()} fill="#8884d8" />
+        </ScatterChart>        
+        </ResponsiveContainer>
+    </div>
+        <EventList events={this.state.events} />
       </div>
     );
   }

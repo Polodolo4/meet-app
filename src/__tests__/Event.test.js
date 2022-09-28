@@ -48,7 +48,7 @@ describe('<Event /> component', () => {
 
       test('collapse details when expanded by clicking button', () => {
         EventWrapper.setState({ collapsed : false });
-        EventWrapper.find('.details-button').simulate('click');
+        EventWrapper.find('.hide-details-button').simulate('click');
         expect(EventWrapper.state('collapsed')).toBe(true);
       });
 

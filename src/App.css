@@ -38,7 +38,17 @@ input[type="number"] {
 }
 
 .city {
+  text-align: center;
   width: 250px;
+}
+
+.city-search {
+  white-space: nowrap;
+  margin-bottom: 20px;
+}
+
+.count-number {
+  text-align: center;
 }
 
 .CitySearch {
@@ -88,6 +98,16 @@ input[type="number"] {
 }
 
 .details-button {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  padding: 5px 8px;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+}
+
+.hide-details-button {
   position: absolute;
   right: 5px;
   bottom: 5px;
@@ -200,7 +220,22 @@ input[type="number"] {
   font-family: "Roboto";
 }
 
+h1 {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
 
+h3 {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.data-vis-wrapper {
+  margin-top: 100px;
+  margin-bottom: 50px;
+}
 
 @media only screen and (min-width: 992px) {
   .data-vis-wrapper {
