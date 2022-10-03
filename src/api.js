@@ -68,7 +68,7 @@ const checkToken = async (accessToken) => {
       const url = 'https://ssjxge1pac.execute-api.us-east-1.amazonaws.com/dev/api/get-events' + '/' + token;
       const result = await axios.get(url);
       if (result.data) {
-        var locations = extractLocations(result.data.events);
+        const locations = extractLocations(result.data.events);
         localStorage.setItem("lastEvents", JSON.stringify(result.data));
         localStorage.setItem("locations", JSON.stringify(locations));
       }
@@ -79,20 +79,20 @@ const checkToken = async (accessToken) => {
 
   const removeQuery = () => {
     if (window.history.pushState && window.location.pathname) {
-      var newurl =
+      const newurl =
         window.location.protocol +
         "//" +
         window.location.host +
         window.location.pathname;
       window.history.pushState("", "", newurl);
     } else {
-      newurl = window.location.protocol + "//" + window.location.host;
+      const newurl = window.location.protocol + "//" + window.location.host;
       window.history.pushState("", "", newurl);
     }
   };
 
 export const extractLocations = (events) => {
-    var extractLocations = events.map((event) => event.location);
-    var locations = [...new Set(extractLocations)];
+    const extractLocations = events.map((event) => event.location);
+    const locations = [...new Set(extractLocations)];
     return locations;
   };
