@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { InfoAlert } from './Alert';
+import React, { Component } from "react";
+import { InfoAlert } from "./Alert";
 
 class CitySearch extends Component {
   state = {
-    query: '',
+    query: "",
     suggestions: [],
     showSuggestions: undefined,
-  }
+  };
 
   handleInputChanged = (event) => {
     const value = event.target.value;
@@ -16,13 +16,14 @@ class CitySearch extends Component {
     if (suggestions.length === 0) {
       this.setState({
         query: value,
-        infoText: 'We can not find the city you are looking for. Please try another city',
+        infoText:
+          "We can not find the city you are looking for. Please try another city",
       });
     } else {
       return this.setState({
         query: value,
         suggestions,
-        infoText:''
+        infoText: "",
       });
     }
   };
@@ -32,24 +33,25 @@ class CitySearch extends Component {
       query: suggestion,
       suggestions: [],
       showSuggestions: false,
-      infoText:''
+      infoText: "",
     });
-  
+
     this.props.updateEvents(suggestion, null);
   };
 
   render() {
-    
     return (
       <div className="CitySearch">
-        <h3><InfoAlert text={this.state.infoText} /></h3>
-        <h2 className='city-search'>Search for events near you!</h2>
+        <h3>
+          <InfoAlert text={this.state.infoText} />
+        </h3>
+        <h2 className="city-search">Search for events near you!</h2>
         <input
           type="text"
           className="city"
-          placeholder='Enter City Here'
+          placeholder="Enter City Here"
           value={this.state.query}
-          onChange={this.handleInputChanged}      
+          onChange={this.handleInputChanged}
           onFocus={() => {
             this.setState({ showSuggestions: true });
           }}
