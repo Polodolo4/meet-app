@@ -12,7 +12,7 @@ const EventGenre = ({ events }) => {
     const COLORS = ['#0088FE', '#00C49F', '#181519', '#FF8042', '#884396' ];
 
 const getData = () => {
-        const genres = ['React', 'JavaScript', 'Node', 'jQuery', 'AngularJS'];
+        const genres = ['React', 'JavaScript', 'Node', 'jQuery', 'Angular'];
         const data = genres.map((genre) => {
             const value = events.filter((event) => event.summary.includes(genre)).length;
             return { name: genre, value };
