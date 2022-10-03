@@ -3,20 +3,20 @@ import { ErrorAlert } from './Alert';
 
 class NumberOfEvents extends Component {
       handleInputChanged = (event) => {
-        let Value = event.target.value;
-        if (Value >= 33 || Value <= 0) {
+        const Value = event.target.value;
+        if (Value >= 33 || Value <= 0 || !event.target.value) {
           this.setState({
             numberDefault: Value,
             infoText: 'Event Count Limit must be set between 1 - 32',
           });
         } else {
           this.setState({
-            numberDefault: event.target.value,
+            numberDefault: parseInt(Value),
             infoText: ' ',
           });
         }
     
-        this.props.updateEvents(undefined, Value);
+        this.props.updateEvents('check', Value);
   };
   
 

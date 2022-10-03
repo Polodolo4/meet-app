@@ -25,8 +25,12 @@ class App extends Component {
       this.setState({ numberOfEvents: eventCount });
     }
 
-    if (!location) {
-      location = 'all';
+    if (location === 'check') {
+      location = this.state.query;
+    }
+
+    if (location !== this.state.query) {
+      this.setState({ query: location });
     }
 
     getEvents().then((events) => {
